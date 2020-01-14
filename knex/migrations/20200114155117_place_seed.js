@@ -1,4 +1,4 @@
-
+// Creating the Places table
 exports.up = function(knex) {
     return knex.schema.createTable('places', function(table) {
         table.increments('placeid');
@@ -9,7 +9,7 @@ exports.up = function(knex) {
     })
   };
   
-  // Delete places table
+// Delete places table
   exports.down = function(knex) {
     return knex.schema.dropTable('places');
   };
