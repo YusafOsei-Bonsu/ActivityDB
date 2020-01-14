@@ -2,57 +2,36 @@
 
 module.exports = {
 
-  development: {
-    client: 'pg',
-    connection: {
-      host: '127.0.0.1',
-      user: 'postgres',
-      password: 'Rasengan1',
-      database: 'project',
-      charset: 'utf8'
+    development: {
+      client: 'pg',
+      connection: 'postgres://localhost/project',
+      migrations: {
+        directory: __dirname + '/knex/migrations'
+      },
+      seeds:{
+        directory: __dirname + '/knex/seeds'
+      }
     },
-    migrations: {
-      directory: __dirname + '/knex/migrations'
+  
+    staging: {
+      client: 'pg',
+      connection: 'postgres://localhost/project',
+      migrations: {
+        tableName: 'knex_migrations'
+      }
     },
-    seeds: {
-      directory: __dirname + '/knex/seeds'
+  
+    production: {
+      client: 'pg',
+      connection: 'postgres://localhost/project',
+      pool: {
+        min: 2,
+        max: 10
+      },
+      migrations: {
+        tableName: 'knex_migrations'
+      }
     }
-  },
-
-  staging: {
-    client: 'pg',
-    connection: {
-      host: '127.0.0.1',
-      user: 'postgres',
-      password: 'Rasengan1',
-      database: 'project',
-      charset: 'utf8'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  },
-
-  production: {
-    client: 'pg',
-    connection: {
-      host: '127.0.0.1',
-      user: 'postgres',
-      password: 'Rasengan1',
-      database: 'project',
-      charset: 'utf8'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
-
-};
+  
+  };
+  
