@@ -50,7 +50,32 @@ describe('API routes', () => {
             res.body[0].should.have.property('postcode');
             res.body[0].postcode.should.equal('SE17PB');
             done();
-           })
-        })
-    } )
+           });
+        });
+    });
+
+    describe('POST /activity', () => {
+        it('should add an activity', (done) => {
+            chai.request(server)
+            .post('/activity')
+            .send({
+                name: 'bungee-jumping',
+                fun: 8,
+                price: 100
+            })
+            .end((err, res) => {
+                res.should.have.status(200);
+                res.should.be.json;
+                res.body.should.be.a('array');
+                res.body.length.should.equal(3);
+                res.body.should.have.property('name');
+                res.body.name.should.equal('bungee-jumping');
+                res.body.should.have.property('fun');
+                res.body.fun.should.equal(8);
+                res.body.should.have.property('price');
+                res.body.price.should.equal(100);
+                done();
+            })
+        });
+    });
 });
