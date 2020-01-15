@@ -4,9 +4,9 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('activities').insert([
-        {activityid: 1, name: 'skydiving', fun: 10, price: 120, postcode: 'ET16TY'},
-        {activityid: 2, name: 'fencing', fun: 8, price: 60, postcode: 'SM69GN'},
-        {activityid: 3, name: 'dancing', fun: 7, price: 20, postcode: 'EM56JK'}
+        {activityid: 1, name: 'sightseeing', fun: 8, price: 120, p_id: null},
+        {activityid: 2, name: 'paintballing', fun: 10, price: 60, p_id: null},
+        {activityid: 3, name: 'exhibition', fun: 4, price: 20, p_id: null}
       ]);
     });
 };
