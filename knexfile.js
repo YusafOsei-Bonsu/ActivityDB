@@ -8,25 +8,25 @@ module.exports = {
       host: '127.0.0.1',
       user: env.yusaf_username,
       password: env.yusaf_pwd,
-      database: 'mocha_chai_tv_shows_test',
+      database: 'project_test',
       charset: 'utf8'
     },
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: __dirname + '/knex/migrations'
     },
     seeds: {
-      directory: __dirname + '/db/seeds/test'
+      directory: __dirname + '/knex/seeds/test'
     }
   },
 
   // test: {
   //   client: 'pg',
-  //   connection: 'postgres://localhost/project',
+  //   connection: 'postgres://localhost/project_test',
   //   migrations: {
-  //     directory: __dirname + '/db/migrations'
+  //     directory: __dirname + '/knex/migrations'
   //   },
   //   seeds: {
-  //     directory: __dirname + '/db/seeds/test'
+  //     directory: __dirname + '/knex/seeds/test'
   //   }
   // },
 
@@ -35,8 +35,8 @@ module.exports = {
       client: 'pg',
       connection: {
         host: '127.0.0.1',
-        user: 'postgres',
-        password: 'Rasengan1',
+        user: env.yusaf_username,
+        password: env.yusaf_pwd,
         database: 'project',
         charset: 'utf8'    
       },
