@@ -29,8 +29,7 @@ module.exports = {
   //     directory: __dirname + '/knex/seeds/test'
   //   }
   // },
-
-
+  
     development: {
       client: 'pg',
       connection: {
@@ -44,7 +43,7 @@ module.exports = {
         directory: __dirname + '/knex/migrations'
       },
       seeds:{
-        directory: __dirname + '/knex/seeds'
+        directory: __dirname + '/knex/seeds/development'
       }
     },
 
@@ -55,29 +54,9 @@ module.exports = {
     //     directory: __dirname + '/knex/migrations'
     //   },
     //   seeds:{
-    //     directory: __dirname + '/knex/seeds'
+    //     directory: __dirname + '/knex/seeds/development'
     //   }
     // },
-  
-    staging: {
-      client: 'pg',
-      connection: 'postgres://localhost/project',
-      migrations: {
-        tableName: 'knex_migrations'
-      }
-    },
-  
-    production: {
-      client: 'pg',
-      connection: 'postgres://localhost/project',
-      pool: {
-        min: 2,
-        max: 10
-      },
-      migrations: {
-        tableName: 'knex_migrations'
-      }
-    }
   
   };
   
