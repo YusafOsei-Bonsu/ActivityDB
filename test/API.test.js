@@ -8,8 +8,28 @@ const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
 describe('API routes', () => {
+
+    beforeEach(function(done) {
+        knex.migrate.rollback()
+        .then(function() {
+          knex.migrate.latest()
+          .then(function() {
+            return knex.seed.run()
+            .then(function() {
+              done();
+            });
+          });
+        });
+      });
     
-    // GET route for showing activities 
+      afterEach(function(done) {
+        knex.migrate.rollback()
+        .then(function() {
+          done();
+        });
+      });
+    
+    // Tests the GET route for showing activities 
     describe('GET /activities', () => {
         it('should return all activities', (done) => {
             chai.request(server)
@@ -32,6 +52,7 @@ describe('API routes', () => {
         });
     });
 
+    // Tests the GET route for showing places 
     describe('GET /places', () => {
         it('should return all places', (done) => {
         chai.request(server)
@@ -54,28 +75,27 @@ describe('API routes', () => {
         });
     });
 
+    // Tests the POST route for inserting new activities 
     describe('POST /activity', () => {
-        it('should add an activity', (done) => {
+        it('should add a new activity', (done) => {
             chai.request(server)
             .post('/activity')
-            .send({
-                name: 'bungee-jumping',
-                fun: 8,
-                price: 100
-            })
-            .end((err, res) => {
+            .query({id: 4, name: 'bungeejumping', fun: 10, price: 400, p_id: 1})
+            .end(function(err, res) {
                 res.should.have.status(200);
-                res.should.be.json;
+                res.should.be.json; // jshint ignore:line
                 res.body.should.be.a('array');
-                res.body.length.should.equal(3);
-                res.body.should.have.property('name');
-                res.body.name.should.equal('bungee-jumping');
-                res.body.should.have.property('fun');
-                res.body.fun.should.equal(8);
-                res.body.should.have.property('price');
-                res.body.price.should.equal(100);
+                res.body.length.should.equal(4);
+                res.body[0].should.have.property('name');
+                res.body[0].name.should.equal('sightseeing');
+                res.body[0].should.have.property('fun');
+                res.body[0].fun.should.equal(8);
+                res.body[0].should.have.property('price');
+                res.body[0].price.should.equal(120);
+                // res.body[0].should.have.property('p_id');
+                // res.body[0].p_id.should.equal('null');
                 done();
-            })
+            });
         });
     });
 });
