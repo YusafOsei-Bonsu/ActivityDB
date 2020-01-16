@@ -52,5 +52,5 @@ describe('API routes', () => {
             done();
            })
         })
-    } )
+    });
 });
